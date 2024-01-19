@@ -14,9 +14,14 @@ const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
-  // pages:{
-  //   signIn:'/login'
-  // }
+  pages:{
+    signIn:'/login'
+  },
+  callbacks:{
+    redirect() {
+      return '/dashboard'
+    },
+  }
 };
 
 export default authOptions;
