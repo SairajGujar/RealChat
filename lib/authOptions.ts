@@ -1,10 +1,10 @@
-import GoogleProvider from 'next-auth/providers/google';
-import { NextAuthOptions } from 'next-auth';
-import { UpstashRedisAdapter } from "@next-auth/upstash-redis-adapter"
-import { db } from './db';
+import GoogleProvider from "next-auth/providers/google";
+import { NextAuthOptions } from "next-auth";
+
+
 
 const authOptions: NextAuthOptions = {
-  adapter: UpstashRedisAdapter(db),
+  adapter: ,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -12,16 +12,43 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
-  pages:{
-    signIn:'/login'
+  pages: {
+    signIn: "/login",
   },
-  callbacks:{
-    redirect() {
-      return '/dashboard'
+  callbacks: {
+    async jwt({ token, user }) {
+      const dbUser = (await db.get(`user:${token.id}`)) as User
+
+      if (!dbUser) {
+          token.id = user!.id
+        return token
+      }
+
+
+      return {
+        id: dbUser.id,
+        name: dbUser.name,
+        email: dbUser.email,
+        picture: dbUser.image,
+      }
     },
-  }
+    
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id
+        session.user.name = token.name
+        session.user.email = token.email
+        session.user.image = token.picture
+      }
+
+      return session
+    },
+    redirect() {
+      return "/dashboard";
+    },
+  },
 };
 
 export default authOptions;

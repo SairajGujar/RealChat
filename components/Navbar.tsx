@@ -19,6 +19,7 @@ const Navbar = () => {
             <div className='flex gap-4'>
                 <p>Dashboard</p>
                 <p>Requests</p>
+                <p>Add Friends</p>
             </div>
             <div>
                 {status==='authenticated' && <DropdownMenuPage></DropdownMenuPage>}
