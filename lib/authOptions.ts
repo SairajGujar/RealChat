@@ -18,23 +18,6 @@ const authOptions: NextAuthOptions = {
     signIn: "/login",
   },
   callbacks: {
-    async jwt({ token, user }) {
-      const dbUser = (await db.get(`user:${token.id}`)) as User
-
-      if (!dbUser) {
-          token.id = user!.id
-        return token
-      }
-
-
-      return {
-        id: dbUser.id,
-        name: dbUser.name,
-        email: dbUser.email,
-        picture: dbUser.image,
-      }
-    },
-    
     async session({ session, token }) {
       if (token) {
         session.user.id = token.id
