@@ -44,6 +44,12 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+
+  conversationIds String[] @db.ObjectId
+  conversations Conversation[] @relation(fields: [conversationIds], references:[id])
+
+  messages Message[]
+
 }
 
 model VerificationToken {
@@ -53,4 +59,27 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Conversation{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  messageIds String[] @db.ObjectId
+  messages Message[]
+
+  userIds String[] @db.ObjectId
+  users User[] @relation(fields: [userIds],references: [id])
+
+}
+
+model Message{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  created_at DateTime @default(now())
+  body String?
+
+  conversationId String @db.ObjectId
+  conversation Conversation @relation(fields: [conversationId], references: [id])
+
+  senderId String @db.ObjectId
+  sender User @relation(fields: [senderId], references: [id], onDelete:Cascade)
 }

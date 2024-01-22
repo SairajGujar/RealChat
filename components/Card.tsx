@@ -8,12 +8,12 @@ interface Props {
 
 const Card = ({ name, image }: Props) => {
     return (
-        <div>
+        <div className='flex gap-4 w-full items-center p-2 m-1 rounded-xl hover:bg-opacity-60 hover:bg-slate-50 hover:cursor-pointer'>
             <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarImage src={image} />
+                <AvatarFallback>?</AvatarFallback>
             </Avatar>
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
+            <p className="leading-7">
                 {name}
             </p>
         </div>
