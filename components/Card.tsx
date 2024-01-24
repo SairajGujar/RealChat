@@ -1,21 +1,14 @@
 import React from 'react'
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
-interface Props {
-    name: string,
-    image: string
-}
-
-const Card = ({ name, image }: Props) => {
+const Card = () => {
     return (
-        <div className='flex gap-4 w-full items-center p-2 m-1 rounded-xl hover:bg-opacity-60 hover:bg-slate-50 hover:cursor-pointer'>
+        <div className='flex items-center gap-2'>
             <Avatar>
-                <AvatarImage src={image} />
-                <AvatarFallback>?</AvatarFallback>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <p className="leading-7">
-                {name}
-            </p>
+            <p>Sairaj Gujar</p>
         </div>
     )
 }

@@ -45,11 +45,12 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
-  conversationIds String[] @db.ObjectId
-  conversations Conversation[] @relation(fields: [conversationIds], references:[id])
-
   messages Message[]
 
+  conversationIds String[] @db.ObjectId
+  conversations Conversation[] @relation(fields: [conversationIds], references: [id])
+  
+  
 }
 
 model VerificationToken {
@@ -63,14 +64,18 @@ model VerificationToken {
 
 model Conversation{
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  lastMessageAt DateTime @default(now())
+  name String?
 
-  messageIds String[] @db.ObjectId
   messages Message[]
 
   userIds String[] @db.ObjectId
-  users User[] @relation(fields: [userIds],references: [id])
+  users User[] @relation(fields: [userIds], references: [id])
 
 }
+
+
 
 model Message{
   id String @id @default(auto()) @map("_id") @db.ObjectId
@@ -79,7 +84,7 @@ model Message{
 
   conversationId String @db.ObjectId
   conversation Conversation @relation(fields: [conversationId], references: [id])
-
+  
   senderId String @db.ObjectId
-  sender User @relation(fields: [senderId], references: [id], onDelete:Cascade)
+  sender User @relation(fields: [senderId], references: [id])
 }

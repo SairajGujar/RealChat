@@ -1,32 +1,30 @@
+import { LogOut, MessageCircleMore, Users } from 'lucide-react'
 import React from 'react'
-import { RiLogoutBoxRLine } from "react-icons/ri";
-import Card from '../Card';
-import { getUsers } from '@/app/actions/getUsers';
-import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { getServerSession } from 'next-auth';
-import authOptions from '@/lib/authOptions';
+import Card from '../Card'
 
 const DesktopSidebar = async () => {
-  const session = await getServerSession(authOptions)
-  const source = session?.user.image
-  const users = await getUsers()
   return (
-    <div className='flex flex-col h-screen bg-slate-200 w-1/4'>
-      <div className='flex justify-between p-2 border-b-2 items-center border-black m-1'>
-        <Avatar>
-          <AvatarImage src={source!} alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <RiLogoutBoxRLine />
+    <div className='flex w-1/4 bg-zinc-800 text-white'>
+      <div className='w-1/4  flex flex-col justify-between my-4'>
+        <div className='flex flex-col items-center w-full gap-5'>
+          <MessageCircleMore />
+          <Users />
+          <div className='hover:bg-slate-300 hover:bg-opacity-50 p-2 hover:rounded-lg hover:cursor-pointer'><LogOut/></div>
+        </div>
+        <div className='flex flex-col items-center w-full'>
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+        </div>
       </div>
-      <div className='flex flex-col gap-1 mt-4'>
-        {
-          users.map((user) => {
-            return (<Card key={user.id} name={user.name!} image={user.image!} />)
-          })
-        }
-
+      <div className='border-r-[1px]'></div>
+      <div className='w-3/4 ml-4 mt-4'>
+        <p className='text-2xl font-bold'>People</p>
+        <div className='mt-4'>
+        <Card></Card>
+        </div>
       </div>
     </div>
   )
