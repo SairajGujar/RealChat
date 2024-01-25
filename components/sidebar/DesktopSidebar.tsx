@@ -1,31 +1,36 @@
-import { LogOut, MessageCircleMore, Users } from 'lucide-react'
+'use client'
 import React from 'react'
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import Card from '../Card'
+import Card from './UserCard'
+import useRoutes from '@/app/hooks/useRoutes'
+import DesktopItem from './DesktopItem'
+import Profile from './Profile'
 
-const DesktopSidebar = async () => {
+const DesktopSidebar = () => {
+  const routes = useRoutes();
   return (
-    <div className='flex w-1/4 bg-zinc-800 text-white'>
-      <div className='w-1/4  flex flex-col justify-between my-4'>
-        <div className='flex flex-col items-center w-full gap-5'>
-          <MessageCircleMore />
-          <Users />
-          <div className='hover:bg-slate-300 hover:bg-opacity-50 p-2 hover:rounded-lg hover:cursor-pointer'><LogOut/></div>
+    <div className='flex w-1/3 bg-zinc-800 text-white h-screen'>
+      <div className='w-1/5  flex flex-col justify-between my-4'>
+        <div className='flex flex-col items-center w-full gap-3'>
+          {
+            routes.map((route) => {
+              return (
+                <DesktopItem key={route.label} onClick={route.onClick} icon={route.icon} href={route.href} active={route.active!} />
+              )
+            })
+          }
         </div>
         <div className='flex flex-col items-center w-full'>
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
+          <Profile/>
         </div>
       </div>
       <div className='border-r-[1px]'></div>
-      <div className='w-3/4 ml-4 mt-4'>
+      <div className='w-4/5 mx-3 mt-4'>
         <p className='text-2xl font-bold'>People</p>
         <div className='mt-4'>
-        <Card></Card>
+          <Card></Card>
         </div>
       </div>
+      <div className='border-r-[1px]'></div>
     </div>
   )
 }
