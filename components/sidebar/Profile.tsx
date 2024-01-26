@@ -1,14 +1,13 @@
 import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { getCurrentSession } from '@/app/actions/getCurrentSession'
 
 
-const Profile =  () => {
+const Profile =  ({source}:{source:string}) => {
     
 
     return (
         <Avatar>
-            <AvatarImage src='' />
+            <AvatarImage src={source} />
             <AvatarFallback>?</AvatarFallback>
         </Avatar>
     )

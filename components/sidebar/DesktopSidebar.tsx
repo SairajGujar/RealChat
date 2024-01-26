@@ -1,15 +1,16 @@
 'use client'
 import React from 'react'
-import Card from './UserCard'
 import useRoutes from '@/app/hooks/useRoutes'
 import DesktopItem from './DesktopItem'
 import Profile from './Profile'
+import { useSession } from 'next-auth/react'
 
 const DesktopSidebar = () => {
+  const {data:session} = useSession();
+  const source = session?.user.image 
   const routes = useRoutes();
   return (
-    <div className='flex w-1/3 bg-zinc-800 text-white h-screen'>
-      <div className='w-1/5  flex flex-col justify-between my-4'>
+    <div className='flex bg-zinc-800 text-white h-screen flex-col justify-between py-3 border-r-[1px] w-[6%]'>
         <div className='flex flex-col items-center w-full gap-3'>
           {
             routes.map((route) => {
@@ -20,17 +21,9 @@ const DesktopSidebar = () => {
           }
         </div>
         <div className='flex flex-col items-center w-full'>
-          <Profile/>
+          <Profile source={source!}/>
         </div>
-      </div>
-      <div className='border-r-[1px]'></div>
-      <div className='w-4/5 mx-3 mt-4'>
-        <p className='text-2xl font-bold'>People</p>
-        <div className='mt-4'>
-          <Card></Card>
-        </div>
-      </div>
-      <div className='border-r-[1px]'></div>
+      
     </div>
   )
 }

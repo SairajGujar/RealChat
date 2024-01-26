@@ -2,7 +2,7 @@ import React from 'react'
 
 const Body = () => {
   return (
-    <div className='min-h-[83%]'>
+    <div className='min-h-[78%]'>
       Body
     </div>
   )

@@ -31,7 +31,7 @@ const authOptions: NextAuthOptions = {
       return session
     },
     redirect() {
-      return "/dashboard";
+      return "/users";
     },
   },
 };

@@ -1,6 +1,5 @@
-import { useParams, usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useMemo } from "react";
-import { getConversations } from "../actions/getConversations";
 
 const useConversation = ()=>{
     const params = useParams();

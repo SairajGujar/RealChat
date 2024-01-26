@@ -5,9 +5,11 @@ import { IoMdSend } from "react-icons/io";
 
 const ChatInput = () => {
   return (
-    <div className='flex mt-1 justify-between'>
-      <Input className='w-[90%]'/>
-      <div className='hover:bg-slate-500 hover:bg-opacity-60 hover:rounded-full'><IoMdSend size='30px'/></div>
+    <div className='flex items-center h-[12%]'>
+      <form action="" className='w-full mx-2 flex items-center gap-2'>
+      <Input />
+      <span className='flex items-center rounded-full h-8 w-9 hover:bg-opacity-70 hover:cursor-pointer bg-sky-400 justify-center'><IoMdSend/></span>
+      </form>
     </div>
   )
 }
