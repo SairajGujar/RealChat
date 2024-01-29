@@ -1,16 +1,18 @@
 import { LogOut, MessageCircleMore, Users } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
 import { useMemo } from "react"
+import useConversation from "./useConversation"
 
 const useRoutes = ()=>{
     const pathname = usePathname()
+    const data = useConversation()
     const router  = useRouter()
     const routes = useMemo(()=>
         [
             {
                 label:'Chat',
                 href:'/conversations',
-                active:pathname==='/conversations',
+                active:pathname==='/conversations'||data.isOpen,
                 icon:MessageCircleMore
             },
             {
@@ -26,7 +28,7 @@ const useRoutes = ()=>{
                 icon:LogOut
             }
         ]
-    , [pathname])
+    , [pathname, data.conversationId])
     return routes;
 }
 

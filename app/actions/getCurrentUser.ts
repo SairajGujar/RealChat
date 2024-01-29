@@ -4,12 +4,12 @@ import { getCurrentSession } from "./getCurrentSession";
 export async function getCurrentUser(){
     const session = await getCurrentSession();
     if(!session){
-        return null
+        return null;
     }
 
     const currentUser = await prisma.user.findUnique({
         where:{
-            id:session.user.id
+            email:session.user.email!
         }
     })
     return currentUser

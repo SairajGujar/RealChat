@@ -10,7 +10,7 @@ const DesktopSidebar = () => {
   const source = session?.user.image 
   const routes = useRoutes();
   return (
-    <div className='flex bg-zinc-800 text-white h-screen flex-col justify-between py-3 border-r-[1px] w-[6%]'>
+    <div className='flex bg-zinc-800 text-white h-screen flex-col justify-between py-3 border-r-[1px] w-[6%] border-zinc-600'>
         <div className='flex flex-col items-center w-full gap-3'>
           {
             routes.map((route) => {

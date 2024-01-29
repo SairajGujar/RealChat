@@ -1,15 +1,13 @@
 import React from 'react'
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Image from 'next/image'
 
 
 const Profile =  ({source}:{source:string}) => {
     
 
     return (
-        <Avatar>
-            <AvatarImage src={source} />
-            <AvatarFallback>?</AvatarFallback>
-        </Avatar>
+        <Image className='rounded-full' src={source} width={40} height={40} alt='?'></Image>
+
     )
 }
 

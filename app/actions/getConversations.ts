@@ -18,11 +18,6 @@ export async function getConversations(){
             },
             include:{
                 users:true,
-                messages:{
-                    include:{
-                        sender:true
-                    }
-                }
             }
         })
     
