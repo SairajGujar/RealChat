@@ -9,7 +9,7 @@ type FormData = {
   message: string
 }
 
-const ChatInput = ({conversationId}:{conversationId:string|string[]}) => {
+const ChatInput = ({conversationId}:{conversationId:string|undefined}) => {
 
   async function submitHandler(data:FormData){
     try {

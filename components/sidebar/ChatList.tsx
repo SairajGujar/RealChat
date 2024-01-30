@@ -1,8 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import ChatCard from './ChatCard'
-import { Conversation, User } from '@prisma/client'
-import { getCurrentUser } from '@/app/actions/getCurrentUser'
 
 interface Props{
     conversations:({ users: { id: string; name: string | null; email: string | null; emailVerified: Date | null; image: string | null; conversationIds: string[]; }[]; } & { id: string; createdAt: Date; lastMessageAt: Date; name: string | null; userIds: string[]; })[]
@@ -12,7 +10,7 @@ const ChatList = ({conversations}:Props) => {
     
     return (
         <div className='flex bg-zinc-800 text-white w-[29%]'>
-            <div className='flex flex-col w-full m-3'>
+            <div className='flex flex-col w-full m-3 gap-1'>
                 <p className='text-2xl font-bold mb-2'>Messages</p>
                 {
                     initialItems.map((item) => {

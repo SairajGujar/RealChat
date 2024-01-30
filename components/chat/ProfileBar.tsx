@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 interface Props {
-  image: string,
-  name: string,
+  image: string|null,
+  name: string|null,
   status: string
 }
 

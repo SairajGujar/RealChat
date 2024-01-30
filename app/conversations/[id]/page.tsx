@@ -1,10 +1,15 @@
-import useConversation from '@/app/hooks/useConversation'
+import { getConversationById } from '@/app/actions/getConversationById'
 import ChatWindow from '@/components/chat/ChatWindow'
 import React from 'react'
 
-const page = () => {
+interface Props{
+  params:{id:string}
+}
+
+const page = async({params:{id}}:Props) => {
+  const conversation = await getConversationById(id)
   return (
-    <ChatWindow/>
+    <ChatWindow conversation={conversation}/>
   )
 }
 

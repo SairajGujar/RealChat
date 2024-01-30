@@ -15,7 +15,6 @@ export async function POST(req:Request){
         }
     })
         const singleConversation = alreadyExist[0]
-        console.log(singleConversation)
         if(singleConversation){
             return NextResponse.json(singleConversation, {status: 200})
         }    
