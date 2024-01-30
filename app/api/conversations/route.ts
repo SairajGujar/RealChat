@@ -1,5 +1,6 @@
 import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
+import { prisma } from "@/prisma/prisma-db";
 
 export async function POST(req:Request){
     
@@ -7,7 +8,7 @@ export async function POST(req:Request){
         const currentUser = await getCurrentUser()
         
     const body = await req.json();
-    const alreadyExist = await prisma?.conversation.findMany({
+    const alreadyExist = await prisma.conversation.findMany({
         where:{
             userIds:{
                 hasEvery:[body.userId, currentUser?.id]

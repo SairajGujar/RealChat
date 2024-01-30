@@ -6,7 +6,7 @@ import ProfileBar from '@/components/chat/ProfileBar'
 import useOtherUser from '@/app/hooks/useOtherUser'
 
 interface Props{
-  conversation:({ users: { id: string; name: string | null; email: string | null; emailVerified: Date | null; image: string | null; conversationIds: string[]; }[]; } & { id: string; createdAt: Date; lastMessageAt: Date; name: string | null; userIds: string[]; }) | null
+  conversation:({ users: { id: string; name: string | null; email: string | null; emailVerified: Date | null; image: string | null;  conversationIds: string[]; }[] } & { id: string; createdAt: Date; lastMessageAt: Date; name: string | null; userIds: string[]; }) | null
 }
 
 const ChatWindow = ({conversation}:Props) => {

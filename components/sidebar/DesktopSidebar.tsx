@@ -21,7 +21,7 @@ const DesktopSidebar = () => {
           }
         </div>
         <div className='flex flex-col items-center w-full'>
-          <Profile source={source!}/>
+          <Profile source={source!} name={session?.user.name!}/>
         </div>
       
     </div>

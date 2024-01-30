@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import ChatCard from './ChatCard'
 
 interface Props{
-    conversations:({ users: { id: string; name: string | null; email: string | null; emailVerified: Date | null; image: string | null; conversationIds: string[]; }[]; } & { id: string; createdAt: Date; lastMessageAt: Date; name: string | null; userIds: string[]; })[]
+    conversations:({ users: { id: string; name: string | null; email: string | null; emailVerified: Date | null; image: string | null;  conversationIds: string[]; }[] } & { id: string; createdAt: Date; lastMessageAt: Date; name: string | null; userIds: string[]; })[]
 }
 const ChatList = ({conversations}:Props) => {
     const [initialItems, setItems] = useState(conversations)
