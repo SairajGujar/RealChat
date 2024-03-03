@@ -63,7 +63,7 @@ const Profile = ({ source, name }: { source: string, name:string }) => {
                             <Label htmlFor="name" className="text-right">
                                 Name
                             </Label>
-                            <Input required minLength={3} {...register('name')} id="name"  className="col-span-3" />
+                            <Input required minLength={3} {...register('name')} id="name" defaultValue={name}  className="col-span-3" />
                         </div>
 
                     <DialogFooter>

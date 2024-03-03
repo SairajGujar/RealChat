@@ -12,7 +12,8 @@ export async function getConversationById(id:string){
                 id:id,
             },
             include:{
-                users:true
+                users:true,
+                messages:true
             }
         })
         return conversation

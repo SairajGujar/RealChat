@@ -13,7 +13,7 @@ const ProfileBar = ({ image, name, status }: Props) => {
     <div className='min-h-[12%] flex w-full bg-zinc-800 justify-between items-center'>
       <div className='flex gap-3 ml-4 items-center'>
         <div>
-          <Image className='rounded-full' src='https://github.com/shadcn.png' width={40} height={40} alt='?'></Image>
+          <Image className='rounded-full' src={image} width={40} height={40} alt='?'></Image>
         </div>
           <p className='text-lg font-medium flex flex-col'>
             {name}
