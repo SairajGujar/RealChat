@@ -12,7 +12,7 @@ export async function PUT(req:Request){
         }
         const updatedProfile = await prisma.user.update({
             where:{
-                email:session.user.email
+                email:session.user.email!
             },
             data:{
                 name:body.name

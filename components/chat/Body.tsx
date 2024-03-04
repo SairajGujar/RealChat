@@ -1,5 +1,8 @@
+import useConversation from '@/app/hooks/useConversation';
+import { client } from '@/lib/pusher';
 import { Message } from '@prisma/client'
 import { format } from 'date-fns';
+import { find } from 'lodash';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react'
 
@@ -8,6 +11,22 @@ interface Props {
 }
 
 const Body = ({ messages }: Props) => {
+  const {conversationId} = useConversation();
+  useEffect(()=>{
+    client.subscribe(conversationId)
+    const messageHandler = (message:({ sender: { id: string; name: string | null; email: string | null; emailVerified: Date | null; image: string | null; conversationIds: string[]; }; } & { id: string; created_at: Date; body: string | null; conversationId: string; senderId: string; }) | undefined)=>{
+      setList((curr)=>{
+        if(find(curr, {id:message!.id})){
+          return curr
+        }
+      })
+    }
+    client.bind('messages:new', messageHandler)
+    return ()=>{
+      client.unsubscribe(conversationId)
+      client.unbind('messages:new', messageHandler)
+    }
+  })
   useEffect(()=>{
     setList(messages);
   }, [messages])
