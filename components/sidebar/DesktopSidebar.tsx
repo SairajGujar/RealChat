@@ -20,7 +20,7 @@ const DesktopSidebar = () => {
             })
           }
         </div>
-        <div className='flex flex-col items-center w-full'>
+        <div className='flex flex-col items-center w-full hover:cursor-pointer'>
           <Profile source={source!} name={session?.user.name!}/>
         </div>
       

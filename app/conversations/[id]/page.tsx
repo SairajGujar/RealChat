@@ -10,6 +10,7 @@ interface Props{
 const page = async({params:{id}}:Props) => {
   const conversation = await getConversationById(id)
   const messages =  await getMessages(conversation?.id)
+  
   return (
     <ChatWindow conversation={conversation} messages={messages}/>
   )

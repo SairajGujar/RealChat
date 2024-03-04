@@ -8,14 +8,7 @@ import { Message } from '@prisma/client'
 
 interface Props{
   conversation:({ users: { id: string; name: string | null; email: string | null; emailVerified: Date | null; image: string | null;  conversationIds: string[]; }[] } & { id: string; createdAt: Date; lastMessageAt: Date; name: string | null; userIds: string[]; }) | null
-  messages:Message[]&{
-    id: string;
-    name: string | null;
-    email: string | null;
-    emailVerified: Date | null;
-    image: string | null;
-    conversationIds: string[];
-}|undefined
+  messages:({ sender: { id: string; name: string | null; email: string | null; emailVerified: Date | null; image: string | null; conversationIds: string[]; }; } & { id: string; created_at: Date; body: string | null; conversationId: string; senderId: string; })[] | undefined
 }
 
 const ChatWindow = ({conversation, messages}:Props) => {
