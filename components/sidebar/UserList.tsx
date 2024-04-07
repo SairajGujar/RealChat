@@ -1,6 +1,5 @@
 import React from 'react'
 import UserCard from './UserCard'
-import Link from 'next/link';
 
 interface Props{
     users:{ id: string; name: string | null; email: string | null; emailVerified: Date | null; image: string | null; conversationIds: string[]; }[]

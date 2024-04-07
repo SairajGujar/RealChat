@@ -13,6 +13,7 @@ const UserCard = ({ name, image, id }: Props) => {
     const router = useRouter();
 
    const handleClick = async()=>{
+
         try {
             const conversation = await axios.post('/api/conversations', {
                 userId:id,

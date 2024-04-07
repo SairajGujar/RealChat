@@ -4,18 +4,27 @@ import { Input } from '../ui/input'
 import { IoMdSend } from "react-icons/io";
 import {useForm} from 'react-hook-form'
 import axios from 'axios'
+import {socket} from '../../socket'
+import { useSession } from 'next-auth/react';
 
 type FormData = {
   message: string
 }
 
 const ChatInput = ({conversationId}:{conversationId:string|undefined}) => {
-
+  const {data:session} = useSession()
   async function submitHandler(data:FormData){
+    socket.emit('send_message', {
+      message:data,
+      room_name:conversationId,
+      dateStamp: Date.now(),
+      sender:session?.user.email
+    })
     try {
+      
       const response = await axios.post('/api/messages', {
         ...data,
-        conversationId: conversationId
+        conversationId
       })
       console.log(response)
     } catch (error) {
